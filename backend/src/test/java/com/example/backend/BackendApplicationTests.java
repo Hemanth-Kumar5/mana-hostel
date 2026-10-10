@@ -18,6 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 		"spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect",
 		"spring.flyway.enabled=false",
 		"app.jwt.secret=integration-test-only-secret-with-at-least-32-chars",
+		"CORS_ALLOWED_ORIGINS=http://localhost:5174,https://mana-hostel.vercel.app",
 		"app.bootstrap-admin.email=",
 		"app.bootstrap-admin.password=",
 })
@@ -47,6 +48,17 @@ class BackendApplicationTests {
 						.header("Access-Control-Request-Headers", "Content-Type"))
 				.andExpect(status().isOk())
 				.andExpect(header().string("Access-Control-Allow-Origin", "http://localhost:5174"))
+				.andExpect(header().string("Access-Control-Allow-Credentials", "true"));
+	}
+
+	@Test
+	void corsPreflightAllowedForDeployedFrontend() throws Exception {
+		mockMvc.perform(options("/api/auth/register")
+						.header("Origin", "https://mana-hostel.vercel.app")
+						.header("Access-Control-Request-Method", "POST")
+						.header("Access-Control-Request-Headers", "Content-Type"))
+				.andExpect(status().isOk())
+				.andExpect(header().string("Access-Control-Allow-Origin", "https://mana-hostel.vercel.app"))
 				.andExpect(header().string("Access-Control-Allow-Credentials", "true"));
 	}
 
