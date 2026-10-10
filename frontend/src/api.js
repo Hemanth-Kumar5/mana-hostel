@@ -7,7 +7,7 @@ const isLocal = typeof window !== 'undefined'
 
 const defaultUrl = isLocal 
   ? 'http://localhost:8081' 
-  : 'https://Manahostels.onrender.com';
+  : 'https://mana-hostell.onrender.com';
 
 const rawApi = import.meta.env.VITE_API_URL || defaultUrl;
 const api = rawApi.replace(/\/+$/, '');
