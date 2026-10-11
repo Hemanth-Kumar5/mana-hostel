@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 		"spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.H2Dialect",
 		"spring.flyway.enabled=false",
 		"app.jwt.secret=integration-test-only-secret-with-at-least-32-chars",
-		"CORS_ALLOWED_ORIGINS=http://localhost:5174,https://mana-hostel.vercel.app",
+		"CORS_ALLOWED_ORIGINS=http://localhost:5174",
 		"app.bootstrap-admin.email=",
 		"app.bootstrap-admin.password=",
 })

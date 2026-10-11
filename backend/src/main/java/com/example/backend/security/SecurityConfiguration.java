@@ -21,10 +21,13 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfiguration {
+    private static final String DEPLOYED_FRONTEND_ORIGIN = "https://mana-hostel.vercel.app";
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtFilter) throws Exception {
         return http
@@ -82,7 +85,8 @@ public class SecurityConfiguration {
                 .map(String::trim)
                 .filter(origin -> !origin.isEmpty())
                 .toList();
-        configuration.setAllowedOriginPatterns(origins);
+        configuration.setAllowedOriginPatterns(
+                Stream.concat(origins.stream(), Stream.of(DEPLOYED_FRONTEND_ORIGIN)).distinct().toList());
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS", "HEAD"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setExposedHeaders(List.of("Authorization", "Content-Disposition"));

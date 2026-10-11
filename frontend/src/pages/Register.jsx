@@ -107,8 +107,7 @@ const Register = () => {
                             required
                             className="form-input"
                         />
-                        <p className='text-sm'>You will recieve OTP's in the time changing your password</p>
-                    </div>
+                     </div>
 
                     {
                         (

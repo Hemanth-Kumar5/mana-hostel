@@ -185,7 +185,7 @@ Optional settings:
 | `JWT_ISSUER` | `hostel-management` | JWT issuer |
 | `JWT_EXPIRATION_MINUTES` | `30` | Access token lifetime, allowed 5–1440 |
 | `BOOTSTRAP_ADMIN_EMAIL`, `BOOTSTRAP_ADMIN_PASSWORD` | unset | Optional first admin; password minimum 8 characters |
-| `CORS_ALLOWED_ORIGINS` | `http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:5174,http://127.0.0.1:5175,http://127.0.0.1:3000,http://localhost:*,http://127.0.0.1:*` | Comma-separated frontend origins or origin patterns |
+| `CORS_ALLOWED_ORIGINS` | `http://localhost:5173,http://localhost:5174,http://localhost:5175,http://localhost:3000,http://127.0.0.1:5173,http://127.0.0.1:5174,http://127.0.0.1:5175,http://127.0.0.1:3000,http://localhost:*,http://127.0.0.1:*` | Comma-separated additional frontend origins or origin patterns; `https://mana-hostel.vercel.app` is always allowed |
 | `RECEIPT_CURRENCY` | `INR` | Currency label shown on generated receipts |
 
 Do not place production secrets in the React `.env`; provide them to the backend through a secret manager or deployment environment. `BOOTSTRAP_ADMIN_PASSWORD` is read only when no user exists for that email; rotate/remove bootstrap variables after provisioning.
